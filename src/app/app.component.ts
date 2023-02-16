@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -6,14 +6,29 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  pokemonName: string = 'Pokemon';
-  pokemonNumber: string = '69';
+  isLoading: boolean = false;
+  pokemonName: string = '';
+  pokemonNumber: string = '';
   pokemonImage: string = '';
 
-  searchPokemon() {
-    this.pokemonName = 'Glaceon';
-    this.pokemonNumber = '471';
-    this.pokemonImage =
-      'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/471.png';
+  ngOnInit(): void {
+    this.searchPokemon();
+  }
+
+  searchPokemon(): void {
+    this.isLoading = false;
+    fetch('https://pokeapi.co/api/v2/pokemon/' + this.getRandomInt())
+      .then((response) => response.json())
+      .then((data) => {
+        this.isLoading = false;
+        this.pokemonName = data.name;
+        this.pokemonNumber = data.id;
+        this.pokemonImage =
+          data.sprites.other['official-artwork'].front_default;
+      });
+  }
+
+  getRandomInt(): number {
+    return Math.floor(Math.random() * 1000);
   }
 }

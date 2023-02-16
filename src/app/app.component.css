@@ -8,7 +8,6 @@
 
 .card {
   width: 320px;
-  background-color: red;
   background-color: #ffffff;
   border-radius: 10px;
   padding: 15px;
@@ -26,6 +25,9 @@
   border-radius: 10px;
   height: 290px;
   padding: 15px;
+  display: grid;
+  justify-content: center;
+  align-items: center;
 }
 
 img {
@@ -51,4 +53,36 @@ button {
   border: none;
   color: #1f3251;
   cursor: pointer;
+}
+
+.portal {
+  width: 12px;
+  height: 12px;
+  display: inline-block;
+  position: relative;
+}
+.portal::after,
+.portal::before {
+  content: "";
+  box-sizing: border-box;
+  width: 12px;
+  height: 12px;
+  border: 2px solid #1f3251;
+  position: absolute;
+  left: 0;
+  top: 0;
+  animation: rotation 2s ease-in-out infinite alternate;
+}
+.portal::after {
+  border-color: #1f3251;
+  animation-direction: alternate-reverse;
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }

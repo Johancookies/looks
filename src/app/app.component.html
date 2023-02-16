@@ -1,10 +1,12 @@
 <main class="container">
   <div class="card">
     <div class="image-container">
-      <img [src]="pokemonImage" [alt]="pokemonName" />
+      <img [src]="pokemonImage" />
     </div>
     <h1>{{ pokemonName }}</h1>
     <span>{{ pokemonNumber }}</span>
-    <button (click)="searchPokemon()">¡RANDOM!</button>
+    <button (click)="searchPokemon()">
+      <span class="portal"></span>
+    </button>
   </div>
 </main>
